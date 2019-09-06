@@ -13,7 +13,7 @@
             <label for="exampleInputEmail1">Enter Vocuher Code</label>
             <input type="text" class="form-control" id="voucherInput" aria-describedby="voucherhelp" name="voucher_code"
               placeholder="Voucher code">
-            <small id="voucherHelp" class="form-text text-muted">{{error_message}}</small>
+            <small id="voucherHelp" class="form-text text-muted">{{inline_error_message}}</small>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -39,6 +39,13 @@
   {{message}}
 </div>
 {% endif %}
+
+{% if error_message.strip %}
+<div class="alert alert-danger" role="alert">
+  {{error_message}}
+</div>
+{% endif %}
+
 
 {% block script %}
 <script>
