@@ -1,0 +1,66 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+
+<div class="row mt-5">
+  <div class="col-4 col-sm-auto d-flex flex-row justify-content-left">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <form method="post" action="{% url 'vouchers:consume' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="exampleInputEmail1">Enter Vocuher Code</label>
+            <input type="text" class="form-control" id="voucherInput" aria-describedby="voucherhelp" name="voucher_code"
+              placeholder="Voucher code">
+            <small id="voucherHelp" class="form-text text-muted">{{error_message}}</small>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-8 col-sm-auto">
+    <h3>Available vouchers</h3>
+
+    {% for voucher in available_vouchers %}
+
+    <h3><span class="badge badge-info voucher-code">{{voucher.voucher_code}}</span></h3>
+    {% endfor %}
+
+  </div>
+</div>
+
+<h1 class="text-primary"></h1>
+
+{% if message.strip %}
+<div class="alert alert-primary" role="alert">
+  {{message}}
+</div>
+{% endif %}
+
+{% block script %}
+<script>
+  $(function () {
+    $(".voucher-code").click(function () {
+      var el = $(this);
+      var code = el.text();
+      $("#voucherInput").attr('value', code);
+    })
+  });
+</script>
+{% endblock script %}
+
+
+{% block style %}
+<style>
+  .voucher-code {
+    cursor: pointer;
+  }
+</style>
+{% endblock style %}
+
+
+
+{% endblock %}
