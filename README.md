@@ -14,7 +14,7 @@ I would like to have a form to enter my voucher code. The form will then shows m
 2. create users
 3. run the app
 
-#TODO and furthure upgrades
+# TODO and furthure upgrades
 [] follow PEP 8 rules
 [] add requirements.txt
 [] add docstrings
